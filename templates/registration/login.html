@@ -1,0 +1,19 @@
+{% load static %}
+<html>
+  <head>
+    <title>Вход</title>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1>SEO GPT</h1>
+    </header>
+    <div id="login">
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Войти</button>
+      </form>
+    </div>
+  </body>
+</html>

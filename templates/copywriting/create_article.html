@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Создать статью</h2>
+<p>Сервис написания длинных SEO статей c помощью ChatGPT</p>
+<form method="post">
+    {% csrf_token %}
+    {% if not status %}
+        <div id="form">
+        <div class="form-group">
+            <label for="{{ form.input_text.id_for_label }}">Введите ключевые слова через запятую:</label>
+            <textarea id="{{ form.input_text.id_for_label }}"
+                      name="{{ form.input_text.name }}"
+                      class="form-control"
+                      rows="4"
+            >{{ form.input_text.value|default:"" }}</textarea>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if status %}
+        <p>Статья создается.</p>
+    <p>Вы можете <a href="{% url 'create_article' %}">создать</a> новую статью или перейти к <a href="{% url 'articles' %}"
+                                                                                                </p> списку статей</p>
+    {% endif %}
+
+    {% if errors %}
+        {% for field_errors in errors.values %}
+            {% for error in field_errors %}
+                <div class="form_error">
+                    <p>{{ error }}</p>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+    {% endif %}
+</form>
+
+{% endblock content %}

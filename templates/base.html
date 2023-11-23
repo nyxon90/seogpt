@@ -1,0 +1,45 @@
+{% load static %}
+<html>
+  <head>
+    <title>SEO GPT</title>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+      <h1>SEO GPT</h1>
+    </header>
+    {% if user.is_authenticated %}
+      <div id="account">
+        <p>{{ user.username }} <a href="{% url 'logout' %}">(выйти)</a></p>
+      </div>
+      <div id="menu_and_content">
+        <div id="menu">
+        <ul id="navbar">
+          <li><a href="{% url 'home' %}">Домой</a></li>
+          <li><a href="{% url 'create_article' %}">Копирайтинг</a></li>
+            <ul id="subnavbar">
+              <li><a href="{% url 'create_article' %}">- Создать статью</a></li>
+              <li><a href="{% url 'articles' %}">- Мои статьи</a></li>
+            </ul>
+          <li><a href="#">Рерайт статей</a></li>
+          <li><a href="#">Генератор сайтов</a></li>
+          <li><a href="{% url 'profile' %}">Настройки</a></li>
+
+        </ul>
+      </div>
+        <div id="content">
+          {% block content %}
+          {% endblock content %}
+        </div>
+      </div>
+
+    {% else %}
+      <div id="unlogged">
+        <p>Вы не авторизованы</p>
+        <a href="{% url 'login' %}">Войти</a>
+      </div>
+    {% endif %}
+    <div>
+    </div>
+  </body>
+</html>

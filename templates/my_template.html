@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Моя страница</title>
+</head>
+<body>
+    <h1>Моя страница</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить</button>
+    </form>
+    {% if thank_you %}
+        <p id="thank_you">{{ thank_you }}</p>
+    {% endif %}
+    <div id="another_thank_you" style="display: none;">Еще раз благодарю</div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            if ($("#thank_you").length) {
+                // Если элемент с id "thank_you" существует, отобразите блок "Еще раз благодарю"
+                $("#another_thank_you").show();
+
+                // Вызовите функцию, которая добавит блок "Еще раз благодарю" (ваша функция func2)
+                func2();
+            }
+        });
+
+        function func2() {
+            // Здесь можно добавить код для вашей функции func2
+            // Например, вы можете создать и добавить элемент с текстом "Еще раз благодарю" на страницу
+            var newElement = document.createElement("div");
+            newElement.innerHTML = "И еще раз благодарю";
+            document.body.appendChild(newElement);
+        }
+    </script>
+</body>
+</html>

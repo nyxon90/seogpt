@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Мои статьи</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Ключевые слова</th>
+                <th>Статус</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles reversed %}
+                <tr>
+                    <td><a href="{% url 'article_detail' article.id %}">{{ article.keywords|slice:":50" }}</a></td>
+                    <td><a href="{% url 'article_detail' article.id %}">{{ article.status }}</a></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">Статей нет</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock content %}

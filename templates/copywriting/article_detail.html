@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Информация о статье</h2>
+{% if article %}
+    <ul>
+        <li>Статус: {{ article.status }}</li>
+        <li>Ключевые слова: {{ article.keywords }}</li>
+    </ul>
+    <h2>Содержание:</h2>
+    <ul>
+        {% for paragraph in structure_paragraphs %}
+            <li><p>{{ paragraph }}</p></li>
+        {% endfor %}
+    </ul>
+    <h2>Контент:</h2>
+    {% for key, value in content_paragraphs.items %}
+        <h3>{{ key }}</h3>
+        <p>{{ value|linebreaksbr }}</p>
+    </li>
+    {% endfor %}
+{% else %}
+    <p>Статья не найдена.</p>
+{% endif %}
+
+{% endblock content %}
